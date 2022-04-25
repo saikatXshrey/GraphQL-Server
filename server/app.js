@@ -3,6 +3,8 @@ const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+require("dotenv").config();
+
 const schema = require("./schema/schema");
 
 const app = express();
@@ -11,9 +13,7 @@ const app = express();
 app.use(cors());
 
 // connect to db
-mongoose.connect(
-  "mongodb+srv://Saikat:Xtremehard@nodeexpressprojects.50qvu.mongodb.net/GraphQL-Practice?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.MONGO_SECRET_KEY);
 
 mongoose.connection.once("open", () => {
   console.log("Connected");
